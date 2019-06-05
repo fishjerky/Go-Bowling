@@ -2,6 +2,8 @@ package bowling
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestRollOne(t *testing.T) {
@@ -26,12 +28,10 @@ func TestRollAllOne(t *testing.T) {
 		game.Roll(1)
 	}
 
-	expected := 20
+	expected := 21
 	actual := game.GetScores()
 
-	if expected != actual {
-		t.Errorf("Score %d, want %d", actual, expected)
-	}
+	assert.Equal(t, actual, expected, "Score is not expected")
 }
 
 func TestOneSpare(t *testing.T) {
@@ -54,7 +54,7 @@ func TestOneStrike(t *testing.T) {
 	game.Roll(10) //strike
 	game.Roll(1)
 	game.Roll(2)
-	
+
 	expected := 16
 	actual := game.GetScores()
 
