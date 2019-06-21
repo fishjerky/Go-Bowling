@@ -19,6 +19,9 @@
 
 # Test Case
  - testNewGame()
+   - 初始化Game
+   - expected: 0
+- test擊倒1瓶()
    - 測試擊倒1瓶
    - rest: 0
    - expected: 1
@@ -31,10 +34,17 @@
    - rest:0
    - expected: 14
  - test SpareBonus
-   - 1st: 1,9 (Spare)
-   - 2nd: 1,2
-   - rest:0
-   - expected: 14
+   - case 1
+    - 1st: 1,9 (Spare)
+    - 2nd: 1,2
+    - rest:0
+    - expected: 14
+   - case 2
+    - 1st: 1,1 
+    - 2st: 1,9 (Spare)
+    - 3nd: 1,2
+    - rest:0
+    - expected: 16
  - test 1個Strike
    - 1st: X (Strike)
    - 2nd: 1,2
