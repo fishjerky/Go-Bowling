@@ -15,7 +15,7 @@ func TestRollOne(t *testing.T) {
 	}
 
 	expected := 1
-	actual := game.GetScores()
+	actual := game.Score()
 
 	if expected != actual {
 		t.Errorf("Score %d, want %d", actual, expected)
@@ -28,10 +28,10 @@ func TestRollAllOne(t *testing.T) {
 		game.Roll(1)
 	}
 
-	expected := 21
-	actual := game.GetScores()
+	expected := 20
+	actual := game.Score()
 
-	assert.Equal(t, actual, expected, "Score is not expected")
+	assert.Equal(t, expected, actual, "Score is not expected")
 }
 
 func TestOneSpare(t *testing.T) {
@@ -42,11 +42,9 @@ func TestOneSpare(t *testing.T) {
 	game.Roll(2) //spare
 
 	expected := 14
-	actual := game.GetScores()
+	actual := game.Score()
 
-	if expected != actual {
-		t.Errorf("Score %d, want %d", actual, expected)
-	}
+	assert.Equal(t, expected, actual, "Score is not expected")
 }
 
 func TestOneStrike(t *testing.T) {
@@ -56,7 +54,7 @@ func TestOneStrike(t *testing.T) {
 	game.Roll(2)
 
 	expected := 16
-	actual := game.GetScores()
+	actual := game.Score()
 
 	if expected != actual {
 		t.Errorf("Score %d, want %d", actual, expected)
@@ -70,7 +68,7 @@ func TestPerfectGame(t *testing.T) {
 	}
 
 	expected := 300
-	actual := game.GetScores()
+	actual := game.Score()
 
 	if expected != actual {
 		t.Errorf("Score %d, want %d", actual, expected)

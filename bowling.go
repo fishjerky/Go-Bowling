@@ -2,75 +2,67 @@ package bowling
 
 import _ "fmt"
 
+const (
+	maxRolls  = 22
+	maxPins   = 10
+	maxFrames = 10
+)
+
 //Bowling game
 type Game struct {
-	rolls     [22]int
+	rolls     [maxRolls]int
 	rollIndex int
 }
 
-//Let roll
-func (g *Game) Roll(pin int) {
-	g.rolls[g.rollIndex] += pin
-	g.rollIndex++
+// Roll adds the number of knocked down pins to the rolls array
+func (g *Game) Roll(pins int) {
+	if g.rollIndex < maxRolls && pins <= maxPins {
+		g.rolls[g.rollIndex] = pins
+		g.rollIndex++
+	}
 }
 
-func (g *Game) GetScores() int {
-	scores := 0
-	frameIndex := 1
-	upperInner := true
-	for i := 0; i < g.rollIndex; i++ {
-		currentPin := g.rolls[i]
-		scores += currentPin
-		
-		//spare
-		if g.isSpare(i) {
-			//bouns
-			scores += currentPin
-			frameIndex++
-			upperInner = true
-			continue
-		}
+// Score returns the total score for the game
+func (g *Game) Score() int {
+	var score int
+	var frameIndex int
 
-		//spare
+	for i := 0; i < g.rollIndex && frameIndex < maxFrames; i += 1 {
+		frameIndex++
 		if g.isStrike(i) {
-			
-			//is Last frame
-			if frameIndex == 10 {
-				continue
-			}
-
-			//bouns
-			scores +=  g.rolls[i+1]
-			scores +=  g.rolls[i+2]
-
-			upperInner = true
-			frameIndex++
+			score += maxPins + g.strikeBonus(i)
+		} else if g.isSpare(i) {
+			score += maxPins + g.spareBonus(i)
+			i++
+		} else {
+			score += g.sumOfBallsInFrame(i)
+			i++
 		}
-		if upperInner == false {
-			frameIndex++
-		}
-		upperInner = false
-		//fmt.Println(frameIndex,i , scores)
 	}
-
-	return scores
+	return score
 }
 
+// isSpare returns true if the frame at the given index is a spare
 func (g *Game) isSpare(rollIndex int) bool {
-	result := false
-	if rollIndex < 2 {
-		return false
-	}
-	if (g.rolls[rollIndex-1] + g.rolls[rollIndex-2]) == 10 {
-		result = true
-	}
-	return result
+	return rollIndex < g.rollIndex-1 && g.rolls[rollIndex]+g.rolls[rollIndex+1] == maxPins
 }
 
+// isStrike returns true if the frame at the given index is a strike
 func (g *Game) isStrike(rollIndex int) bool {
-	result := false
-	if g.rolls[rollIndex] == 10 {
-		result = true
-	}
-	return result
+	return g.rolls[rollIndex] == maxPins
+}
+
+// spareBonus returns the bonus points for a spare
+func (g *Game) spareBonus(rollIndex int) int {
+	return g.rolls[rollIndex+2]
+}
+
+// strikeBonus returns the bonus points for a strike
+func (g *Game) strikeBonus(rollIndex int) int {
+	return g.rolls[rollIndex+1] + g.rolls[rollIndex+2]
+}
+
+// sumOfBallsInFrame returns the sum of the two rolls in a frame
+func (g *Game) sumOfBallsInFrame(rollIndex int) int {
+	return g.rolls[rollIndex] + g.rolls[rollIndex+1]
 }
