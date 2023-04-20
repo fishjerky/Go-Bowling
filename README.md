@@ -1,4 +1,5 @@
-"# go-bowling" 
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/fishjerky/Go-Bowling/go.yml)
+# go-bowling" 
 
 # Description
 
