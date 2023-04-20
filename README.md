@@ -1,6 +1,6 @@
 <!-- README.md -->
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/fishjerky/Go-Bowling/go.yml) 
-![cov](https://fishjerky.github.io/Go-Bowling/badges/coverage.svg)](https://github.com/fishjerky/Go-Bowling/actions)
+[![cov](https://fishjerky.github.io/Go-Bowling/badges/coverage.svg)](https://github.com/fishjerky/Go-Bowling/actions)
 # go-bowling" 
 
 # Description
