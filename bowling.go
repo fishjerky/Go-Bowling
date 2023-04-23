@@ -8,7 +8,7 @@ const (
 	maxFrames = 10
 )
 
-//Bowling game
+// Bowling game
 type Game struct {
 	rolls     [maxRolls]int
 	rollIndex int
