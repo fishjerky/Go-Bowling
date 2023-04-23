@@ -2,6 +2,7 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/fishjerky/Go-Bowling/go.yml) 
 [![Coverage](https://img.shields.io/badge/coverage-70%25-green)](https://github.com/fishjerky/Go-Bowling/blob/main/coverage.out)
 [![Go Report Card](https://goreportcard.com/badge/github.com/fishjerky/Go-Bowling)](https://goreportcard.com/report/github.com/fishjerky/Go-Bowling)
+[![Release](https://img.shields.io/github/release/fishjerky/Go-Bowling.svg?style=flat-square)](https://github.com/fishjerky/Go-Bowling/releases)
 
 # go-bowling" 
 
